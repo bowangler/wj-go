@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
+	"wj-go/dao"
 )
 
 func InitRouter() *gin.Engine {
@@ -15,6 +16,11 @@ func InitRouter() *gin.Engine {
 }
 
 func Books(c *gin.Context) {
+	(&dao.Book{}).Find(c)
+}
+
+func Demos(c *gin.Context) {
+	//使用go-sql-driver查询
 	db, err := sql.Open("mysql", "root:root@tcp(192.168.43.1:3306)/white_jotter?charset=utf8")
 	checkErr(err)
 
